@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFO Office - Two Pages One Pager</title>
+    <style>
+        :root {
+            /* Paleta base inspirada en tu imagen */
+            --bg-primary: #F4F6FB;
+            --bg-secondary: #E8F0FF;
+            --accent-pink: #F78DA7;
+            --accent-blue-light: #71C7EC;
+            --accent-blue-deep: #2978B5;
+            --accent-blue-footer: #3A8BC8;  /* Azul más luminoso para footer e impresión */
+            --accent-blue-footer-end: #2E7AB8;  /* Gradiente final más suave */
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --white: #ffffff;
+            --gradient-orange: linear-gradient(180deg, #FFA500 0%, #FFB733 25%, #FFC966 50%, #FFDB99 75%, #FFEDCC 100%);
+            
+            /* Sistema de espaciado estándar */
+            --section-spacing: 20px;  /* Más generoso para 2 páginas */
+            --element-spacing: 28px;  
+            --card-spacing: 36px;     
+            --item-spacing: 16px;     
+            --title-intro-spacing: 32px;  
+            --intro-content-spacing: 52px;  
+        }
+
+        /* Espaciado responsivo */
+        @media (max-width: 768px) {
+            :root {
+                --section-spacing: 16px;  
+                --element-spacing: 20px;
+                --card-spacing: 28px;
+                --item-spacing: 12px;
+                --title-intro-spacing: 24px;
+                --intro-content-spacing: 40px;
+            }
+
+            .benefits-metrics-combined {
+                grid-template-columns: 1fr;
+                gap: var(--element-spacing);
+            }
+
+            .benefits-grid-new {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .metrics-vertical {
+                gap: 20px;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin: 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        /* Contenedor para páginas */
+        .pages-container {
+            width: 297mm;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .page {
+            width: 297mm;
+            min-height: 210mm;
+            height: auto;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(41, 120, 181, 0.15);
+            border-radius: 8px;
+            overflow: visible;
+            position: relative;
+            page-break-after: always;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        /* Header Section */
+        .header-section {
+            min-height: 280px;
+            height: auto;
+            background: linear-gradient(135deg, var(--accent-blue-deep) 0%, var(--accent-blue-light) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 30px;
+            padding-top: 15px;
+            color: var(--white);
+            position: relative;
+            overflow: visible;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/madrid.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            z-index: 0;
+        }
+
+        .header-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 3;
+            position: relative;
+            margin-bottom: 35px;
+            width: 100%;
+            padding-top: 0px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 3;
+            position: relative;
+            flex: 1;
+            margin-top: -10px;
+        }
+
+        .header-arrow {
+            width: 35px;
+            height: auto;
+        }
+
+        .header-title {
+            font-size: 30px;
+            font-weight: 900;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            z-index: 3;
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px 40px 30px 40px;
+        }
+
+        .main-hero-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin: 0 0 25px 0;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+            line-height: 1.3;
+            width: 100%;
+            transform: translateY(-8px);
+            position: relative;
+        }
+
+        .main-hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+            border-radius: 2px;
+            animation: speedLine 2s ease-in-out infinite;
+        }
+
+        @keyframes speedLine {
+            0% { width: 0; opacity: 0; }
+            50% { width: 60px; opacity: 1; }
+            100% { width: 80px; opacity: 0; }
+        }
+
+        .main-hero-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+            line-height: 1.6;
+            margin: 0;
+            width: 100%;
+            opacity: 0.95;
+        }
+
+        .header-badges {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            z-index: 3;
+            position: relative;
+            align-items: flex-start;
+            margin-top: -5px;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .header-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Claim Section */
+        .claim-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px 40px 8px 40px;
+            margin: 0 0 -10px 0;
+            text-align: center;
+            border-top: 1px solid rgba(41, 120, 181, 0.1);
+            box-shadow: 0 2px 8px rgba(41, 120, 181, 0.05);
+        }
+
+        .claim-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--accent-blue-deep);
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .claim-subtitle {
+            font-size: 16px;
+            color: #4A5568;
+            line-height: 1.6;
+            margin: 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: var(--section-spacing);
+            min-height: 0;
+            text-align: center;
+        }
+
+        /* Challenges Section Horizontal */
+        .challenges-section-horizontal {
+            margin: var(--section-spacing) auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        /* Contenedor agrupador para los retos */
+        .challenges-images-grid {
+            background: white;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            border-radius: 16px;
+            padding: var(--card-spacing);
+            margin: var(--element-spacing) 0;
+            box-shadow: 0 2px 16px rgba(41, 120, 181, 0.04);
+        }
+
+        .challenges-title-horizontal {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--accent-blue-deep);
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .challenges-intro-horizontal {
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .challenges-intro-horizontal p {
+            font-size: 0.85rem;
+            color: #4A5568;
+            line-height: 1.5;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .challenges-grid-horizontal {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .challenge-card-horizontal {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 2px 12px rgba(41, 120, 181, 0.06);
+            transition: all 0.3s ease;
+            text-align: center;
+            height: auto;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .challenge-card-horizontal:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(41, 120, 181, 0.15);
+            border-color: var(--accent-blue-deep);
+        }
+
+        /* Challenges Images Grid */
+        .challenges-images-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 30px 0;
+            padding: var(--card-spacing);
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            background: white;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(41, 120, 181, 0.04);
+        }
+
+        .challenge-image-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .challenge-with-text {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 15px;
+            background: rgba(248, 250, 252, 0.5);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(41, 120, 181, 0.08);
+        }
+
+        .challenge-with-text .challenge-image-item {
+            flex: 1;
+            max-width: none;
+            min-width: auto;
+        }
+
+        .challenge-text-content {
+            flex: 1;
+            padding: 0;
+        }
+
+        .challenge-text-content p {
+            font-size: 0.9rem;
+            color: #4A5568;
+            line-height: 1.6;
+            margin: 0 0 12px 0;
+            text-align: left;
+        }
+
+        .challenge-text-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .challenge-text-right {
+            flex-direction: row;
+        }
+
+        .challenge-image {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(41, 120, 181, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .challenge-image:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(41, 120, 181, 0.15);
+        }
+
+        /* Professional Challenge Items */
+        .phase-professional-item {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 0;
+            background: transparent;
+            padding: 25px 0;
+            border-radius: 0;
+            box-shadow: none;
+            transition: all 0.3s ease;
+            border: none;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+        }
+
+        .phase-professional-item:hover {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 8px;
+            padding: 25px 20px;
+        }
+
+        .phase-professional-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .phase-professional-item.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .phase-professional-content {
+            flex: 1;
+            padding: 0 20px;
+            text-align: left;
+        }
+
+        .phase-professional-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+            text-align: left;
+        }
+
+        .phase-professional-description {
+            font-size: 16px;
+            color: #5A6B7D;
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            text-align: left;
+        }
+
+        .phase-professional-impact {
+            background: rgba(232, 244, 253, 0.5);
+            padding: 15px 25px;
+            border-left: 4px solid var(--accent-blue-deep);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .impact-label {
+            font-weight: 700;
+            color: var(--accent-blue-deep);
+            font-size: 14px;
+        }
+
+        .phase-professional-image {
+            flex: 1.2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: none;
+        }
+
+        .phase-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(41, 120, 181, 0.1);
+            max-height: 350px;
+            object-fit: contain;
+        }
+
+        /* PAGE 2 STYLES */
+
+        /* Header simplificado para página 2 */
+        .page2-header {
+            background: linear-gradient(135deg, var(--accent-blue-deep) 0%, var(--accent-blue-light) 100%);
+            color: var(--white);
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page2-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/madrid.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .page2-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--white);
+            margin: 0;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Phases Solution Section */
+        .phases-solution-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--section-spacing) 20px 0 20px;
+            text-align: center;
+        }
+
+        .phases-solution-intro {
+            font-size: 16px;
+            color: #5A6B7D;
+            line-height: 1.6;
+            margin: 0 auto var(--intro-content-spacing) auto;
+            max-width: 900px;
+        }
+
+        /* Modern Cards Container */
+        .phases-cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 0 auto var(--section-spacing) auto;
+            padding: 0 20px;
+            max-width: 1400px;
+        }
+
+        /* Modern Phase Cards */
+        .phase-card-modern {
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            box-shadow: none;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: auto;
+            height: auto;
+            text-align: center;
+            padding: 30px 15px 15px 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 12px rgba(41, 120, 181, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phase-card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(41, 120, 181, 0.2);
+        }
+
+        /* Fase 4 - Continua con sombra permanente */
+        .phase-card-continuous {
+            box-shadow: 0 16px 48px rgba(41, 120, 181, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .phase-card-continuous:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 56px rgba(41, 120, 181, 0.25);
+        }
+
+        .phase-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: #5A6B7D;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .phase-content-modern {
+            padding: 0;
+            position: relative;
+            flex: 1;
+        }
+
+        .phase-title-modern {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 15px 0;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .phase-number {
+            position: absolute;
+            top: -25px;
+            right: 15px;
+            z-index: 3;
+            background: linear-gradient(135deg, var(--accent-blue-deep) 0%, var(--accent-blue-light) 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 16px rgba(41, 120, 181, 0.3);
+            border: 3px solid white;
+        }
+
+        .phase-subsection {
+            margin-top: 20px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .subsection-title {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            border-left: 3px solid #3498db;
+            text-align: left;
+        }
+
+        .subsection-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            display: block;
+        }
+
+        .subsection-list li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: #555;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .subsection-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .phase-timeline-badge {
+            background: var(--accent-blue-deep);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 24px;
+            display: inline-block;
+            align-self: center;
+        }
+
+        /* Benefits Section New */
+        .benefits-section-new {
+            margin: var(--section-spacing) 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        /* Nueva estructura combinada beneficios + métricas */
+        .benefits-metrics-combined {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 48px;
+            align-items: start;
+            margin-top: var(--card-spacing);
+        }
+
+        /* Métricas en columna vertical */
+        .metrics-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .metric-vertical-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(248, 250, 252, 0.8);
+            border: 1px solid rgba(41, 120, 181, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .metric-vertical-item:hover {
+            background: rgba(41, 120, 181, 0.05);
+            border-color: rgba(41, 120, 181, 0.2);
+        }
+
+        .metric-vertical-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-blue-deep);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-vertical-description {
+            font-size: 14px;
+            color: #5A6B7D;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .benefits-title-new {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--accent-blue-deep);
+            text-align: center;
+            margin-bottom: var(--card-spacing);
+            letter-spacing: 1px;
+        }
+
+        .benefits-grid-new {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .benefit-item-new {
+            background: rgba(232, 244, 253, 0.3);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(41, 120, 181, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item-new:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(41, 120, 181, 0.15);
+            background: rgba(232, 244, 253, 0.5);
+        }
+
+        .benefit-title-new {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-blue-deep);
+            margin: 0 0 15px 0;
+            line-height: 1.3;
+        }
+
+        .benefit-text-new {
+            font-size: 16px;
+            color: #5A6B7D;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Premium Footer */
+        .premium-footer {
+            background: linear-gradient(135deg, var(--accent-blue-footer) 0%, var(--accent-blue-footer-end) 100%);
+            color: var(--white);
+            padding: 50px 40px 40px 40px;
+            margin-top: var(--section-spacing);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('assets/madrid.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: 1;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            align-items: start;
+        }
+
+        /* Columna 1: Carta de Compromiso (2/3) */
+        .footer-impact {
+            padding: 40px 0;
+        }
+
+        .footer-commitment-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.95);
+            margin: 0 0 32px 0;
+            text-align: left;
+        }
+
+        .footer-commitment-highlight {
+            font-size: 19px;
+            font-weight: 600;
+            color: var(--white);
+            margin: 0;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        /* Columna 2: CEO Section (1/3) */
+        .footer-ceo {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+
+        .footer-ceo-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .footer-ceo-image {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-skills-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .footer-skill-badge {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .footer-skill-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .footer-ceo-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: right;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .footer-ceo-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .footer-ceo-bio {
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+        }
+
+        .footer-ceo-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .footer-contact-line {
+            text-align: right;
+            margin: 0;
+        }
+
+        .footer-links-line {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+            margin-top: 2px;
+        }
+
+        .footer-link-simple {
+            color: var(--accent-blue-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-simple:hover {
+            color: var(--white);
+        }
+
+        /* Estilos para impresión */
+        @media print {
+            .pages-container {
+                width: 100%;
+                gap: 0;
+            }
+            
+            .page {
+                width: 100%;
+                height: 297mm;
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+            }
+            
+            .premium-footer {
+                background: var(--accent-blue-footer) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .premium-footer::before {
+                display: none !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .pages-container {
+                width: 100%;
+            }
+            
+            .page {
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .phases-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .benefits-metrics-combined {
+                grid-template-columns: 1fr;
+                gap: var(--element-spacing);
+            }
+
+            .benefits-grid-new {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .metrics-vertical {
+                gap: 20px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .phases-cards-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .phase-professional-item {
+                flex-direction: column !important;
+                gap: 25px;
+                margin-bottom: 30px;
+                padding: 25px 15px;
+            }
+
+            .phase-professional-item.reverse {
+                flex-direction: column !important;
+            }
+
+            .phase-professional-content {
+                padding: 0;
+                text-align: left;
+            }
+
+            .phase-professional-image {
+                max-width: 100%;
+                order: -1;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-ceo {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .footer-ceo-content {
+                text-align: center;
+            }
+
+            .footer-contact-line {
+                text-align: center;
+            }
+
+            .footer-links-line {
+                justify-content: center;
+            }
+
+            .metrics-vertical {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pages-container">
+        <!-- PÁGINA 1 -->
+        <div class="page">
+            <!-- Header Section -->
+            <div class="header-section">
+                <div class="header-top">
+                    <div class="header-content">
+                        <img src="assets/flecha_diligo.png" alt="Flecha" class="header-arrow">
+                        <h1 class="header-title">CFO Office</h1>
+                    </div>
+                    <div class="header-badges">
+                        <span class="header-badge">JUL 2025</span>
+                        <span class="header-badge">PRIVATE EQUITY</span>
+                        <span class="header-badge">DIGITAL TRANSFORMATION</span>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <h2 class="main-hero-title">Acelere la Transformación Financiera de su Portfolio</h2>
+                    <p class="main-hero-subtitle">Nuestra solución CFO Office garantiza una toma de control inmediata y establece una base sólida necesaria para soportar el crecimiento esperado, al tiempo que permite una monitorización exhaustiva de los riesgos de negocio.</p>
+                </div>
+            </div>
+
+            <!-- Claim Section -->
+            <div class="claim-section">
+                <h3 class="claim-title">El Coste Oculto tras el Deal</h3>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Challenges Section Horizontal -->
+                <div class="challenges-section-horizontal">
+                    <div class="challenges-images-grid">
+                        <!-- Reto 1 - Procesos Operativos Ineficientes -->
+                        <div class="phase-professional-item">
+                            <div class="phase-professional-content">
+                                <h3 class="phase-professional-title">Procesos Operativos Ineficientes</h3>
+                                <p class="phase-professional-description">Las compañías adquiridas mantienen procesos desactualizados con flujos manuales, duplicación de tareas y sistemas desintegrados que consumen recursos sin generar valor. La ausencia de estándares operativos impide optimizar la productividad y ralentiza la respuesta ante oportunidades de mercado.</p>
+                                <div class="phase-professional-impact">
+                                    <span class="impact-label">Impacto:</span> Ralentización transformación
+                                </div>
+                            </div>
+                            <div class="phase-professional-image">
+                                <img src="assets/reto1.png" alt="Reto 1 Post-Deal" class="phase-img">
+                            </div>
+                        </div>
+
+                        <!-- Reto 2 - Brecha de Talento Crítico -->
+                        <div class="phase-professional-item">
+                            <div class="phase-professional-image">
+                                <img src="assets/reto2.png" alt="Reto 2 Post-Deal" class="phase-img">
+                            </div>
+                            <div class="phase-professional-content">
+                                <h3 class="phase-professional-title">Brecha de Talento Crítico</h3>
+                                <p class="phase-professional-description">Escasez crítica de profesionales que combinen competencias financieras con dominio de tecnologías emergentes (IA, BI, automatización). Esta brecha se agrava en empresas del portfolio donde se requieren perfiles híbridos para transformaciones digitales complejas con rigurosos estándares financieros.</p>
+                                <div class="phase-professional-impact">
+                                    <span class="impact-label">Impacto:</span> Limitación capacidad mejora
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reto 3 - Reporting Inconsistente -->
+                        <div class="phase-professional-item">
+                            <div class="phase-professional-content">
+                                <h3 class="phase-professional-title">Reporting Inconsistente</h3>
+                                <p class="phase-professional-description">Las empresas del portfolio carecen de sistemas de reporting estandarizados, generando informes con criterios inconsistentes y datos no validados. Esta falta de rigor compromete la visibilidad del rendimiento y erosiona la confianza de inversores al basar decisiones en información poco fiable.</p>
+                                <div class="phase-professional-impact">
+                                    <span class="impact-label">Impacto:</span> Pérdida confianza inversores
+                                </div>
+                            </div>
+                            <div class="phase-professional-image">
+                                <img src="assets/reto3.png" alt="Reto 3 Post-Deal" class="phase-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PÁGINA 2 -->
+        <div class="page">
+            <!-- Header simplificado para página 2 -->
+            <div class="page2-header">
+                <h2 class="page2-title">Nuestra Solución y metodología</h2>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Phases Solution Section -->
+                <div class="phases-solution-section">
+                    <p class="phases-solution-intro">Este enfoque sistemático de 4 fases permite establecer controles robustos, implementar herramientas de gestión avanzadas y alinear los objetivos operativos con las métricas de valor del fondo. El resultado es una organización financieramente más sólida, con mayor transparencia y capacidad de generar valor sostenible para todos los stakeholders.</p>
+                </div>
+
+                <!-- Cards con Imágenes -->
+                <div class="phases-cards-container">
+                    <!-- Fase 1 -->
+                    <div class="phase-card-modern">
+                        <div class="phase-number">1</div>
+                        <div class="phase-content-modern">
+                            <h3 class="phase-title-modern">Análisis y Diagnóstico</h3>
+                            <p class="phase-subtitle">Análisis del departamento financiero y establecimiento de framework</p>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">DIAGNÓSTICO FINANCIERO</h4>
+                                <ul class="subsection-list">
+                                    <li>Revisión informes de gestión y due diligence</li>
+                                    <li>Evaluación estructura y capacidades del equipo</li>
+                                    <li>Análisis de último cierre contable</li>
+                                    <li>Identificación gaps y oportunidades</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">CONTROL INTERNO</h4>
+                                <ul class="subsection-list">
+                                    <li>Evaluación procesos internos y calidad información</li>
+                                    <li>Implementación marco de control robusto</li>
+                                    <li>Sistema de reporting automático</li>
+                                    <li>Definición políticas y procedimientos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="phase-timeline-badge">1 sem</div>
+                    </div>
+
+                    <!-- Fase 2 -->
+                    <div class="phase-card-modern">
+                        <div class="phase-number">2</div>
+                        <div class="phase-content-modern">
+                            <h3 class="phase-title-modern">Estrategia Financiera</h3>
+                            <p class="phase-subtitle">Sistemas de presupuestación y optimización del capital circulante</p>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">PRESUPUESTO Y FORECAST</h4>
+                                <ul class="subsection-list">
+                                    <li>Diseño proceso completo de presupuestación</li>
+                                    <li>Configuración forecast en áreas clave</li>
+                                    <li>Análisis desviaciones para toma decisiones</li>
+                                    <li>Modelo de planning financiero</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">CONTROL DE CAJA</h4>
+                                <ul class="subsection-list">
+                                    <li>Optimización DSO, DPO y DIO</li>
+                                    <li>Mejora contabilidad y registro tesorería</li>
+                                    <li>Dashboard de control en tiempo real</li>
+                                    <li>Optimización flujo de caja</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="phase-timeline-badge">1-2 sem</div>
+                    </div>
+
+                    <!-- Fase 3 -->
+                    <div class="phase-card-modern">
+                        <div class="phase-number">3</div>
+                        <div class="phase-content-modern">
+                            <h3 class="phase-title-modern">Alineación de Equipos</h3>
+                            <p class="phase-subtitle">Conexión entre objetivos del fondo y resultados operativos</p>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">OBJETIVOS COMPAÑÍA</h4>
+                                <ul class="subsection-list">
+                                    <li>Conexión resultados financieros y objetivos</li>
+                                    <li>Definición marco métricas del fondo</li>
+                                    <li>Preparación KPIs clave y metas</li>
+                                    <li>Alineación estratégica corporativa</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">CUADRO DE MANDO</h4>
+                                <ul class="subsection-list">
+                                    <li>Identificación indicadores clave por área</li>
+                                    <li>Diseño dashboard operativo</li>
+                                    <li>Automatización informes mensuales</li>
+                                    <li>Integración sistemas existentes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="phase-timeline-badge">1-2 sem</div>
+                    </div>
+
+                    <!-- Fase 4 -->
+                    <div class="phase-card-modern phase-card-continuous">
+                        <div class="phase-number">4</div>
+                        <div class="phase-content-modern">
+                            <h3 class="phase-title-modern">Generación de Valor</h3>
+                            <p class="phase-subtitle">Profesionalizando las finanzas y preparándose para la salida</p>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">MONITORIZACIÓN</h4>
+                                <ul class="subsection-list">
+                                    <li>Implementación área financiera robusta</li>
+                                    <li>Evolución perfil del equipo clave</li>
+                                    <li>Optimización ERP, BI y reporting</li>
+                                    <li>Automatización tareas rutinarias</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="phase-subsection">
+                                <h4 class="subsection-title">PREPARACIÓN EXIT</h4>
+                                <ul class="subsection-list">
+                                    <li>Identificación oportunidades valor</li>
+                                    <li>Valoración continua del equity</li>
+                                    <li>Documentación equity story completa</li>
+                                    <li>Maximización múltiplos de salida</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="phase-timeline-badge">Continuo</div>
+                    </div>
+                </div>
+
+                <!-- Benefits + Metrics Combined Section -->
+                <div class="benefits-section-new">
+                    <h3 class="benefits-title-new">Beneficios</h3>
+                    
+                    <div class="benefits-metrics-combined">
+                        <!-- Benefits Grid (Left Side) -->
+                        <div class="benefits-grid-new">
+                            <div class="benefit-item-new">
+                                <h4 class="benefit-title-new">Toma de Control</h4>
+                                <p class="benefit-text-new">Implementamos soluciones ágiles para optimizar la eficiencia operativa y acelerar el retorno de la inversión tras la adquisición, asegurando un control efectivo desde el primer momento.</p>
+                            </div>
+                            
+                            <div class="benefit-item-new">
+                                <h4 class="benefit-title-new">Transparencia a Stakeholders</h4>
+                                <p class="benefit-text-new">Proporcionamos reportes claros y detallados dirigidos a accionistas y directivos, fomentando la confianza y facilitando decisiones estratégicas alineadas con los objetivos del fondo.</p>
+                            </div>
+                            
+                            <div class="benefit-item-new">
+                                <h4 class="benefit-title-new">Gestión Proactiva de Caja</h4>
+                                <p class="benefit-text-new">Diseñamos herramientas y marcos de control que permiten anticipar tensiones de liquidez y maximizar el uso eficiente de los recursos financieros disponibles.</p>
+                            </div>
+                            
+                            <div class="benefit-item-new">
+                                <h4 class="benefit-title-new">Análisis de Valor de la Compañía</h4>
+                                <p class="benefit-text-new">Identificamos áreas clave de mejora operativa y estratégica que potencien el valor de la empresa en futuras transacciones, contribuyendo a un crecimiento sostenible y rentable.</p>
+                            </div>
+                        </div>
+
+                        <!-- Metrics Vertical (Right Side) -->
+                        <div class="metrics-vertical">
+                            <div class="metric-vertical-item">
+                                <div class="metric-vertical-value">+80%</div>
+                                <div class="metric-vertical-description">Aceleración en transformación financiera</div>
+                            </div>
+                            
+                            <div class="metric-vertical-item">
+                                <div class="metric-vertical-value">+50%</div>
+                                <div class="metric-vertical-description">Incremento en satisfacción de stakeholders y equipos</div>
+                            </div>
+                            
+                            <div class="metric-vertical-item">
+                                <div class="metric-vertical-value">+90%</div>
+                                <div class="metric-vertical-description">Mejora en monitorización y detección de riesgos significativos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Footer -->
+            <footer class="premium-footer">
+                <div class="footer-content">
+                    <!-- Columna 1: Carta de Compromiso (2/3) -->
+                    <div class="footer-impact">
+                        <p class="footer-commitment-text">En un mercado altamente competitivo, donde la tecnología y la eficiencia operativa son esenciales, nuestra solución permite a los fondos de Private Equity maximizar el valor de su portfolio.</p>
+                        
+                        <p class="footer-commitment-highlight">Nos comprometemos a acelerar la transformación financiera, asegurando un retorno óptimo de la inversión y preparando a las empresas para futuras transacciones.</p>
+                    </div>
+
+                    <!-- Columna 2: CEO Section (1/3) -->
+                    <div class="footer-ceo">
+                        <div class="footer-ceo-left">
+                            <img src="assets/res.webp" alt="Ramón Espuny - CEO Diligo" class="footer-ceo-image">
+                            
+                            <div class="footer-skills-badges">
+                                <div class="footer-skill-badge">Transaction Services</div>
+                                <div class="footer-skill-badge">Private Equity & VC</div>
+                                <div class="footer-skill-badge">Valuation Modeling</div>
+                                <div class="footer-skill-badge">Tech & Analytics</div>
+                                <div class="footer-skill-badge">Artificial Intelligence</div>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-ceo-content">
+                            <h4 class="footer-ceo-name">Ramón Espuny</h4>
+                            
+                            <p class="footer-ceo-bio">+20 años de experiencia en dirección financiera y consultoría.</p>
+                            <p class="footer-ceo-bio">Fundador y CEO de Diligo.</p>
+                            
+                            <div class="footer-ceo-contact">
+                                <p class="footer-contact-line">+34 691 431 481 — ramon.espuny@diligo.io</p>
+                                <p class="footer-contact-line">www.diligo.io</p>
+                                <div class="footer-links-line">
+                                    <a href="https://www.linkedin.com/in/ramon-espuny/" target="_blank" class="footer-link-simple">LinkedIn</a>
+                                    <span>|</span>
+                                    <a href="https://calendar.app.google/jZ88wY9Uvfu4ZeLN9" target="_blank" class="footer-link-simple">Calendar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html> 
